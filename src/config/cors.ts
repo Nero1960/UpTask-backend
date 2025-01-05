@@ -6,10 +6,13 @@ export const corsConfig: CorsOptions = {
 
         console.log(whitelist)
 
-        if(whitelist.includes(origin)) {
-            callback(null, true)
+        if (!origin || whitelist.includes(origin.trim())) {
+            callback(null, true);
         } else {
             callback(new Error('Error de CORS'))
         }
-    }
+    },
+
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }
